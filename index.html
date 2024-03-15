@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Text File</title>
+</head>
+<body>
+    <input type="file" id="fileInput" />
+    <pre id="fileContents"></pre>
+
+    <script>
+        const P = ['$','#','/',"'",'{','}','[',']'];
+
+        // Calcular el alfabeto
+        const alphaUpper = Array.from(Array(26)).map((e, i) => i + 65);
+        const alphaMinus = Array.from(Array(26)).map((e, i) => i + 97);
+        const alphabet = (alphaUpper.map((x) => String.fromCharCode(x))) + (alphaMinus.map((x) => String.fromCharCode(x)));
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            // onload es como agregarle un listener del evento readAsAlgo
+            reader.onload = function(event) {
+                var contents = event.target.result;
+                exploreTextFile(contents);
+            };
+
+            reader.readAsText(file);
+        });
+
+        function exploreTextFile(contents) {
+            var characters = contents.split('');
+            console.log(characters);
+            var charCount = characters.length;
+
+            // You can explore each character here
+            for (var i = 0; i < charCount; i++) {
+                // console.log("Character at index " + i + ": " + characters[i]);
+                // Do whatever you want with each character here
+            }
+        }
+    </script>
+</body>
+</html>
